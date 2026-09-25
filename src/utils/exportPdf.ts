@@ -13,19 +13,19 @@ export function exportOperationPdf(operation: Operation): void {
   const pageHeight = doc.internal.pageSize.getHeight();
   let y = 16;
 
-  // Header Background
-  doc.setFillColor(15, 76, 129); // Classic Marine Navy Blue
+  // Header Background - TBL River Navy
+  doc.setFillColor(0, 56, 101); // TBL Deep River Blue
   doc.rect(0, 0, pageWidth, 26, 'F');
 
   // Header Title
   doc.setTextColor(255, 255, 255);
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(13);
-  doc.text('PORTOBALSA - RELATÓRIO OFICIAL DE CONTROLE DIÁRIO & DESEMPENHO', 14, 11);
+  doc.setFontSize(12.5);
+  doc.text('TBL - RELATÓRIO OFICIAL DE CONTROLE DIÁRIO & DESEMPENHO FLUVIAL', 14, 11);
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8);
-  doc.text('Análise de Tempos, Manobras Fluviais, Vistorias e Produtividade por Turno', 14, 17);
+  doc.text('PortoBalsa • Análise de Tempos, Manobras Fluviais, Vistorias e Produtividade por Turno', 14, 17);
   doc.text(`Gerado em: ${new Date().toLocaleDateString('pt-BR')} às ${new Date().toLocaleTimeString('pt-BR')}`, pageWidth - 14, 17, { align: 'right' });
 
   y = 32;
@@ -278,9 +278,7 @@ export function exportOperationPdf(operation: Operation): void {
   doc.text(operation.leaderName, 55, sigY + 4, { align: 'center' });
   doc.text(`Líder de Operação (${operation.shift || 'Dia'})`, 55, sigY + 8, { align: 'center' });
 
-  doc.text('Vistoriador / Coordenação Fluvial', pageWidth - 55, sigY + 4, { align: 'center' });
-  doc.text('Conferência de Cargas, Atracação e Rampa', pageWidth - 55, sigY + 8, { align: 'center' });
-
-  const filename = `PortoBalsa_${operation.operationCode.replace(/\s+/g, '_')}_${operation.date}.pdf`;
+  const filename = `TBL_Relatorio_${operation.operationCode.replace(/\s+/g, '_')}_${operation.date}.pdf`;
   doc.save(filename);
 }
+

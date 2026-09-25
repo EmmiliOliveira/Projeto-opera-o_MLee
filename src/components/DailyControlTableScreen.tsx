@@ -84,20 +84,22 @@ export const DailyControlTableScreen: React.FC<DailyControlTableScreenProps> = (
         <div>
           <button
             onClick={onBackToMenu}
-            className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-slate-800 transition-colors mb-2 cursor-pointer"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-sky-700 hover:text-[#004b87] transition-colors mb-2 cursor-pointer"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4 text-[#0284c7]" />
             <span>Voltar ao Menu Principal</span>
           </button>
-          <div className="flex items-center gap-2 text-xs font-bold text-blue-600 uppercase tracking-wider mb-0.5">
+          <div className="flex items-center gap-2 text-xs font-bold text-[#004b87] uppercase tracking-wider mb-0.5">
+            <span>TBL Fluvial</span>
+            <span>•</span>
             <span>Gestão Operacional de Turno</span>
           </div>
           <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2.5">
-            <FileSpreadsheet className="w-7 h-7 text-emerald-600" />
+            <FileSpreadsheet className="w-7 h-7 text-[#0284c7]" />
             <span>Controle Diário — KPIs | Equipes Dia e Noite</span>
           </h2>
           <p className="text-xs text-slate-500 mt-1">
-            Espelho digital interativo da planilha operacional oficial. Acompanhe atracação, desatracação, frotas, vistorias e ocorrências.
+            Espelho digital interativo da planilha operacional oficial TBL. Acompanhe atracação, desatracação, frotas, vistorias e ocorrências.
           </p>
         </div>
 
@@ -105,10 +107,10 @@ export const DailyControlTableScreen: React.FC<DailyControlTableScreenProps> = (
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={() => exportAllOperationsExcel(operations)}
-            className="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold flex items-center gap-2 shadow-sm transition-all cursor-pointer"
+            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#15803d] to-[#16a34a] hover:from-[#14532d] hover:to-[#15803d] text-white text-xs font-bold flex items-center gap-2 shadow-md shadow-emerald-950/10 transition-all cursor-pointer"
           >
             <Download className="w-4 h-4" />
-            <span>Exportar Planilha Oficial (.xlsx)</span>
+            <span>Exportar Planilha Oficial TBL (.xlsx)</span>
           </button>
         </div>
       </div>

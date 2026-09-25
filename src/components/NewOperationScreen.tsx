@@ -185,13 +185,18 @@ export const NewOperationScreen: React.FC<NewOperationScreenProps> = ({
           <button
             type="button"
             onClick={onCancel}
-            className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-slate-800 transition-colors mb-2 cursor-pointer"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-sky-700 hover:text-[#004b87] transition-colors mb-2 cursor-pointer"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4 text-[#0284c7]" />
             <span>Voltar ao Menu Principal</span>
           </button>
+          <div className="flex items-center gap-2 text-xs font-bold text-[#004b87] uppercase tracking-wider mb-0.5">
+            <span>TBL Fluvial</span>
+            <span>•</span>
+            <span>Planejamento Operacional</span>
+          </div>
           <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2">
-            <PlusCircle className="w-7 h-7 text-blue-600" />
+            <PlusCircle className="w-7 h-7 text-[#0284c7]" />
             <span>Cadastro das Informações de Operação</span>
           </h2>
           <p className="text-xs text-slate-500 mt-1">
@@ -207,16 +212,16 @@ export const NewOperationScreen: React.FC<NewOperationScreenProps> = ({
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+      <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-xl shadow-sky-950/5 border border-sky-100 overflow-hidden">
         <div className="p-6 sm:p-8 space-y-6">
           {/* SEÇÃO 1: TURNO, TIPO & EMBARCAÇÃO (Conforme Planilha de Controle Diário) */}
-          <div className="p-5 rounded-2xl bg-slate-900 text-white shadow-md">
+          <div className="p-5 rounded-2xl bg-gradient-to-r from-[#001c38] via-[#002f5e] to-[#001f3f] text-white shadow-md border border-sky-400/20">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-bold text-blue-300 uppercase tracking-widest flex items-center gap-2">
-                <Compass className="w-4 h-4 text-blue-400" />
-                Dados Principais da Escala de Turno
+              <span className="text-xs font-bold text-sky-300 uppercase tracking-widest flex items-center gap-2">
+                <Compass className="w-4 h-4 text-sky-400" />
+                Dados Principais da Escala de Turno TBL
               </span>
-              <span className="text-xs px-2.5 py-0.5 rounded-full bg-blue-950 text-blue-200 border border-blue-800 font-semibold">
+              <span className="text-xs px-2.5 py-0.5 rounded-full bg-sky-950/80 text-sky-200 border border-sky-500/30 font-semibold">
                 Líder: {currentLeader.name}
               </span>
             </div>
@@ -653,7 +658,7 @@ export const NewOperationScreen: React.FC<NewOperationScreenProps> = ({
 
           <button
             type="submit"
-            className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md hover:shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#004b87] via-[#0284c7] to-[#0ea5e9] hover:from-[#003865] hover:to-[#0274ae] text-white text-xs font-bold shadow-md shadow-sky-900/20 hover:shadow-lg transition-all cursor-pointer flex items-center justify-center gap-2"
           >
             <FileCheck className="w-4 h-4" />
             <span>Salvar e Ir para Operações em Aguardo</span>

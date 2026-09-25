@@ -7,6 +7,8 @@ import {
   setCurrentLeaderId,
   resetAllAppData
 } from '../utils/storage';
+import { TBLLogo } from './TBLLogo';
+import { AppLogo } from './AppLogo';
 import { 
   Ship, 
   User, 
@@ -18,7 +20,8 @@ import {
   ShieldCheck, 
   BadgeAlert, 
   CheckCircle2, 
-  Anchor
+  Anchor,
+  Compass
 } from 'lucide-react';
 
 interface LoginScreenProps {
@@ -136,50 +139,60 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess }) => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex flex-col justify-center py-10 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-[#eaf4fc] via-[#f4f9fd] to-[#e8f1f9] flex flex-col justify-center py-10 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Subtle Fluvial Water Ripples decorative background */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-sky-200/40 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-emerald-100/40 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20" />
+
       {/* Top Banner Branding */}
-      <div className="sm:mx-auto sm:w-full sm:max-w-xl text-center px-4">
-        <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-blue-700 text-white mb-3">
-          <Ship className="w-6 h-6" />
+      <div className="sm:mx-auto sm:w-full sm:max-w-xl text-center px-4 relative z-10">
+        {/* TBL Official Brand & Vitória-Régia Emblem */}
+        <div className="flex flex-col items-center justify-center mb-4 text-center">
+          <div className="bg-white/95 backdrop-blur-md px-6 sm:px-8 py-4 sm:py-5 rounded-2xl border border-sky-200/80 shadow-lg shadow-sky-900/10 flex items-center justify-center">
+            <TBLLogo variant="full" size="lg" showSubtitle={true} className="mx-auto" />
+          </div>
+          <div className="mt-3 inline-flex items-center justify-center gap-2 px-3.5 py-1 rounded-full bg-[#002f5e] text-white text-xs font-semibold shadow-sm border border-sky-400/30">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse" />
+            <span className="tracking-wide">PORTOBALSA</span>
+            <span className="text-sky-300 font-normal">| Cronometragem de Ciclos</span>
+          </div>
         </div>
-        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
-          PortoBalsa Operações
-        </h1>
-        <p className="mt-1 text-xs text-slate-600 max-w-md mx-auto">
-          Controle de Tempos e Movimentação Operacional Fluvial
+
+        <p className="text-xs text-slate-600 max-w-md mx-auto">
+          Sistema de Controle Operacional de Embarque e Desembarque de Carretas & Balsas
         </p>
 
         {/* Security & Access Notice */}
-        <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded bg-slate-200 text-xs text-slate-700 font-medium">
-          <ShieldCheck className="w-3.5 h-3.5 text-blue-700" />
-          <span>Identificação Obrigatória do Líder de Operação</span>
+        <div className="mt-2.5 inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-sky-100/80 text-[11px] text-[#004b87] font-medium border border-sky-200">
+          <ShieldCheck className="w-3.5 h-3.5 text-[#0284c7]" />
+          <span>Acesso Operacional Exclusivo para Líderes de Turno</span>
         </div>
       </div>
 
-      <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-xl px-4">
-        <div className="bg-white rounded-lg shadow-sm border border-slate-300 overflow-hidden">
+      <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-xl px-4 relative z-10">
+        <div className="bg-white rounded-2xl shadow-xl shadow-sky-950/5 border border-sky-100 overflow-hidden">
           {/* Tabs Navigation: Logins Salvos vs Cadastrar Novo */}
-          <div className="flex border-b border-slate-200 bg-slate-50">
+          <div className="flex border-b border-sky-100 bg-[#f8fbfe]">
             <button
               onClick={() => { setActiveTab('saved'); setErrorMessage(null); }}
               className={`flex-1 py-4 text-center text-sm font-semibold border-b-2 transition-colors cursor-pointer flex items-center justify-center gap-2 ${
                 activeTab === 'saved'
-                  ? 'border-blue-600 text-blue-600 bg-white'
-                  : 'border-transparent text-slate-500 hover:text-slate-700'
+                  ? 'border-[#0284c7] text-[#004b87] bg-white shadow-xs'
+                  : 'border-transparent text-slate-500 hover:text-slate-800'
               }`}
             >
-              <User className="w-4 h-4" />
-              <span>Logins Salvos ({leaders.length})</span>
+              <User className="w-4 h-4 text-[#0284c7]" />
+              <span>Líderes Salvos ({leaders.length})</span>
             </button>
             <button
               onClick={() => { setActiveTab('register'); setErrorMessage(null); }}
               className={`flex-1 py-4 text-center text-sm font-semibold border-b-2 transition-colors cursor-pointer flex items-center justify-center gap-2 ${
                 activeTab === 'register'
-                  ? 'border-blue-600 text-blue-600 bg-white'
-                  : 'border-transparent text-slate-500 hover:text-slate-700'
+                  ? 'border-[#0284c7] text-[#004b87] bg-white shadow-xs'
+                  : 'border-transparent text-slate-500 hover:text-slate-800'
               }`}
             >
-              <Plus className="w-4 h-4" />
+              <Plus className="w-4 h-4 text-[#0284c7]" />
               <span>Cadastrar Novo Líder & Equipe</span>
             </button>
           </div>
@@ -469,16 +482,16 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess }) => {
                   <button
                     type="button"
                     onClick={() => setActiveTab('saved')}
-                    className="px-4 py-2.5 rounded-lg border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-50 cursor-pointer"
+                    className="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 text-xs font-semibold hover:bg-slate-50 cursor-pointer"
                   >
                     Cancelar
                   </button>
                   <button
                     type="submit"
-                    className="px-6 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-md hover:shadow-lg transition-all cursor-pointer flex items-center gap-1.5"
+                    className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#004b87] via-[#0284c7] to-[#0ea5e9] hover:from-[#003865] hover:to-[#0274ae] text-white text-xs font-bold shadow-md shadow-sky-900/20 hover:shadow-lg transition-all cursor-pointer flex items-center gap-1.5"
                   >
                     <LogIn className="w-4 h-4" />
-                    <span>Salvar e Acessar Painel</span>
+                    <span>Salvar e Acessar Operações TBL</span>
                   </button>
                 </div>
               </form>
@@ -487,8 +500,10 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLoginSuccess }) => {
         </div>
 
         <div className="mt-6 flex flex-col items-center gap-2">
-          <p className="text-center text-xs text-slate-500">
-            PortoBalsa Operações • Sistema de Cronometragem e Controle Diário
+          <p className="text-center text-xs text-slate-500 flex items-center gap-2">
+            <span>TBL Transportes & Logística Fluvial</span>
+            <span>•</span>
+            <span className="text-[#0284c7] font-semibold">PortoBalsa</span>
           </p>
           <button
             type="button"

@@ -78,33 +78,33 @@ export const PendingOperationsScreen: React.FC<PendingOperationsScreenProps> = (
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={onNavigateNew}
-            className="px-3.5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition-all cursor-pointer"
+            className="px-3.5 py-2 rounded-xl bg-gradient-to-r from-[#004b87] to-[#0284c7] hover:from-[#003865] hover:to-[#0274ae] text-white text-xs font-bold flex items-center gap-1.5 shadow-md shadow-sky-900/10 transition-all cursor-pointer"
           >
-            <PlusCircle className="w-4 h-4" />
+            <PlusCircle className="w-4 h-4 text-sky-200" />
             <span>Nova Operação</span>
           </button>
         </div>
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs mb-6 flex flex-col sm:flex-row items-center gap-3">
+      <div className="bg-white p-3.5 rounded-2xl border border-sky-100 shadow-xs mb-6 flex flex-col sm:flex-row items-center gap-3">
         <div className="relative flex-1 w-full">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-sky-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Buscar por código (ex: OP-76), balsa ou data..."
-            className="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50/50 text-slate-900"
+            className="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-sky-100 focus:outline-none focus:ring-2 focus:ring-[#0284c7] bg-sky-50/30 text-slate-900"
           />
         </div>
 
         <div className="flex items-center gap-1.5 w-full sm:w-auto shrink-0">
           <button
             onClick={() => setFilterType('ALL')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors cursor-pointer ${
               filterType === 'ALL'
-                ? 'bg-slate-900 text-white'
+                ? 'bg-[#002f5e] text-white shadow-xs'
                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
@@ -112,9 +112,9 @@ export const PendingOperationsScreen: React.FC<PendingOperationsScreenProps> = (
           </button>
           <button
             onClick={() => setFilterType('EMBARQUE')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors cursor-pointer ${
               filterType === 'EMBARQUE'
-                ? 'bg-blue-700 text-white'
+                ? 'bg-[#0284c7] text-white shadow-xs'
                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >
@@ -122,9 +122,9 @@ export const PendingOperationsScreen: React.FC<PendingOperationsScreenProps> = (
           </button>
           <button
             onClick={() => setFilterType('DESEMBARQUE')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-colors cursor-pointer ${
               filterType === 'DESEMBARQUE'
-                ? 'bg-amber-600 text-white'
+                ? 'bg-amber-600 text-white shadow-xs'
                 : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
             }`}
           >

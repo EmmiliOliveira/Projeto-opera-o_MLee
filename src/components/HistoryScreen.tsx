@@ -70,13 +70,15 @@ export const HistoryScreen: React.FC<HistoryScreenProps> = ({
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <div className="flex items-center gap-2 text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-xs font-semibold text-[#004b87] uppercase tracking-wider mb-1">
+            <span>TBL Fluvial</span>
+            <span>•</span>
             <span>Histórico Operacional</span>
             <span>•</span>
-            <span>Líder: {currentLeader.name}</span>
+            <span className="text-slate-500">Líder: {currentLeader.name}</span>
           </div>
           <h2 className="text-2xl font-black text-slate-900 flex items-center gap-2.5">
-            <FileSpreadsheet className="w-7 h-7 text-indigo-600" />
+            <FileSpreadsheet className="w-7 h-7 text-[#0284c7]" />
             <span>Consultar Histórico de Operações (Últimos 30 dias)</span>
           </h2>
           <p className="text-xs text-slate-500 mt-1">
@@ -88,10 +90,10 @@ export const HistoryScreen: React.FC<HistoryScreenProps> = ({
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={handleExportAll}
-            className="px-3.5 py-2 rounded border border-slate-300 bg-white hover:bg-slate-50 text-slate-800 text-xs font-semibold flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer"
+            className="px-3.5 py-2 rounded-xl border border-sky-300 bg-sky-50/60 hover:bg-sky-100 text-[#004b87] text-xs font-bold flex items-center gap-1.5 shadow-xs transition-colors cursor-pointer"
             title="Exportar base consolidada com todas as operações finalizadas"
           >
-            <Download className="w-4 h-4 text-slate-600" />
+            <Download className="w-4 h-4 text-[#0284c7]" />
             <span>Exportar Base Geral (Todas as Operações)</span>
           </button>
         </div>

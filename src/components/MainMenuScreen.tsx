@@ -1,5 +1,6 @@
 import React from 'react';
 import { LeaderProfile, Operation } from '../types';
+import { TBLLogo } from './TBLLogo';
 import { 
   Clock, 
   PlusCircle, 
@@ -10,7 +11,8 @@ import {
   Ship, 
   Table, 
   CheckCircle,
-  FileText
+  FileText,
+  Anchor
 } from 'lucide-react';
 
 interface MainMenuScreenProps {
@@ -35,38 +37,47 @@ export const MainMenuScreen: React.FC<MainMenuScreenProps> = ({
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 sm:px-6">
-      {/* Cabeçalho Simples do Líder */}
-      <div className="bg-white border border-slate-300 rounded-lg p-5 mb-6 shadow-xs">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      {/* Cabeçalho Corporativo TBL do Líder */}
+      <div className="bg-white border border-sky-100 rounded-2xl p-5 sm:p-6 mb-6 shadow-md shadow-sky-950/5 relative overflow-hidden">
+        {/* Subtle Water Ripples background decoration */}
+        <div className="absolute -right-12 -top-12 w-48 h-48 bg-sky-100/50 rounded-full blur-2xl pointer-events-none" />
+
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
           <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
-                PortoBalsa • Painel do Líder
+            <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#004b87]">
+                TBL Fluvial • Painel Operacional
               </span>
-              <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-slate-100 text-slate-700 border border-slate-200">
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-50 text-[#0284c7] border border-sky-200">
                 Turno: {currentLeader.defaultShift || 'Dia'}
               </span>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                Base: {currentLeader.basePort}
+              </span>
             </div>
-            <h1 className="text-2xl font-bold text-slate-900">
+            <h1 className="text-2xl font-black text-slate-900 tracking-tight">
               {currentLeader.name}
             </h1>
-            <p className="text-xs text-slate-600 mt-0.5">
-              Matrícula: {currentLeader.registrationNumber} • Base: {currentLeader.basePort}
+            <p className="text-xs text-slate-500 mt-0.5">
+              Matrícula Operacional: <span className="font-semibold text-slate-700">{currentLeader.registrationNumber}</span>
+              {currentLeader.defaultBarge && (
+                <span> • Balsa: <strong className="text-slate-700">{currentLeader.defaultBarge}</strong></span>
+              )}
             </p>
           </div>
 
-          <div className="flex items-center gap-3 border-t md:border-t-0 md:border-l border-slate-200 pt-3 md:pt-0 md:pl-5">
+          <div className="flex items-center gap-3 border-t md:border-t-0 md:border-l border-sky-100 pt-3 md:pt-0 md:pl-6">
             <div className="text-center px-3">
-              <span className="block text-xl font-bold text-blue-700">{pendingOrActiveOps.length}</span>
-              <span className="text-[11px] text-slate-500">Na Fila</span>
+              <span className="block text-2xl font-black text-[#0284c7]">{pendingOrActiveOps.length}</span>
+              <span className="text-[11px] font-medium text-slate-500">Na Fila</span>
             </div>
-            <div className="text-center px-3 border-l border-slate-200">
-              <span className="block text-xl font-bold text-emerald-700">{completedOps.length}</span>
-              <span className="text-[11px] text-slate-500">Concluídas</span>
+            <div className="text-center px-3 border-l border-sky-100">
+              <span className="block text-2xl font-black text-emerald-600">{completedOps.length}</span>
+              <span className="text-[11px] font-medium text-slate-500">Concluídas</span>
             </div>
-            <div className="text-center px-3 border-l border-slate-200">
-              <span className="block text-xl font-bold text-slate-800">{currentLeader.drivers.length}</span>
-              <span className="text-[11px] text-slate-500">Motoristas</span>
+            <div className="text-center px-3 border-l border-sky-100">
+              <span className="block text-2xl font-black text-slate-700">{currentLeader.drivers.length}</span>
+              <span className="text-[11px] font-medium text-slate-500">Motoristas</span>
             </div>
           </div>
         </div>
@@ -94,26 +105,26 @@ export const MainMenuScreen: React.FC<MainMenuScreenProps> = ({
         {/* OPÇÃO 1: PAINEL DE OPERAÇÕES */}
         <div
           onClick={() => onNavigate('pending')}
-          className="bg-white border border-slate-300 hover:border-blue-600 rounded-lg p-5 cursor-pointer transition-colors flex flex-col justify-between shadow-xs"
+          className="bg-white border border-sky-100 hover:border-[#0284c7] rounded-2xl p-5 cursor-pointer transition-all duration-200 hover:shadow-lg hover:shadow-sky-950/5 flex flex-col justify-between group"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <div className="w-10 h-10 rounded bg-blue-100 text-blue-800 flex items-center justify-center font-bold">
-                <Clock className="w-5 h-5" />
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#003865] to-[#0284c7] text-white flex items-center justify-center font-bold shadow-sm shadow-sky-900/20 group-hover:scale-105 transition-transform">
+                <Clock className="w-5 h-5 text-sky-200" />
               </div>
-              <span className="text-xs font-bold text-slate-600 bg-slate-100 px-2 py-0.5 rounded">
+              <span className="text-xs font-bold text-[#004b87] bg-sky-50 px-2.5 py-1 rounded-full border border-sky-200">
                 {pendingOrActiveOps.length} ativas
               </span>
             </div>
-            <h2 className="text-base font-bold text-slate-900">
+            <h2 className="text-base font-black text-slate-900 group-hover:text-[#004b87] transition-colors">
               Painel de Operações
             </h2>
-            <p className="text-xs text-slate-600 mt-1">
-              Fila de operações cadastradas. Inicie ou retome o cronômetro das frotas.
+            <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+              Fila de operações cadastradas. Inicie ou retome a cronometragem por frota e motorista.
             </p>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-blue-700 text-xs font-bold">
+          <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[#0284c7] text-xs font-bold group-hover:translate-x-0.5 transition-transform">
             <span>Acessar Fila</span>
             <ArrowRight className="w-4 h-4" />
           </div>
@@ -122,26 +133,26 @@ export const MainMenuScreen: React.FC<MainMenuScreenProps> = ({
         {/* OPÇÃO 2: ADICIONAR NOVA OPERAÇÃO */}
         <div
           onClick={() => onNavigate('new')}
-          className="bg-white border border-slate-300 hover:border-blue-600 rounded-lg p-5 cursor-pointer transition-colors flex flex-col justify-between shadow-xs"
+          className="bg-white border border-emerald-100 hover:border-emerald-500 rounded-2xl p-5 cursor-pointer transition-all duration-200 hover:shadow-lg hover:shadow-emerald-950/5 flex flex-col justify-between group"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <div className="w-10 h-10 rounded bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
-                <PlusCircle className="w-5 h-5" />
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#166534] to-[#22c55e] text-white flex items-center justify-center font-bold shadow-sm shadow-emerald-900/20 group-hover:scale-105 transition-transform">
+                <PlusCircle className="w-5 h-5 text-emerald-100" />
               </div>
-              <span className="text-xs font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded">
-                Novo
+              <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                Novo Ciclo
               </span>
             </div>
-            <h2 className="text-base font-bold text-slate-900">
+            <h2 className="text-base font-black text-slate-900 group-hover:text-emerald-800 transition-colors">
               Adicionar Nova Operação
             </h2>
-            <p className="text-xs text-slate-600 mt-1">
-              Cadastre balsa, empurrador, turno, horários de atracação e motoristas.
+            <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+              Cadastre balsa, empurrador, turno, horário de atracação e motoristas operacionais.
             </p>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-emerald-700 text-xs font-bold">
+          <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-emerald-700 text-xs font-bold group-hover:translate-x-0.5 transition-transform">
             <span>Cadastrar Manobra</span>
             <ArrowRight className="w-4 h-4" />
           </div>
@@ -150,26 +161,26 @@ export const MainMenuScreen: React.FC<MainMenuScreenProps> = ({
         {/* OPÇÃO 3: CONTROLE DIÁRIO - KPIS */}
         <div
           onClick={() => onNavigate('daily')}
-          className="bg-white border border-slate-300 hover:border-blue-600 rounded-lg p-5 cursor-pointer transition-colors flex flex-col justify-between shadow-xs"
+          className="bg-white border border-sky-100 hover:border-[#004b87] rounded-2xl p-5 cursor-pointer transition-all duration-200 hover:shadow-lg hover:shadow-sky-950/5 flex flex-col justify-between group"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <div className="w-10 h-10 rounded bg-slate-100 text-slate-800 flex items-center justify-center font-bold">
-                <Table className="w-5 h-5" />
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#002f5e] to-[#004b87] text-white flex items-center justify-center font-bold shadow-sm shadow-slate-900/20 group-hover:scale-105 transition-transform">
+                <Table className="w-5 h-5 text-sky-200" />
               </div>
-              <span className="text-xs font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded">
-                Planilha
+              <span className="text-xs font-bold text-slate-700 bg-slate-50 px-2.5 py-1 rounded-full border border-slate-200">
+                Planilha Oficial
               </span>
             </div>
-            <h2 className="text-base font-bold text-slate-900">
+            <h2 className="text-base font-black text-slate-900 group-hover:text-[#004b87] transition-colors">
               Controle Diário (KPIs)
             </h2>
-            <p className="text-xs text-slate-600 mt-1">
-              Tabela diária com atracação, desatracação, frotas, prainha e ocorrências.
+            <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+              Tabela oficial com atracação, desatracação, frotas, prainha e ocorrências.
             </p>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-slate-800 text-xs font-bold">
+          <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[#004b87] text-xs font-bold group-hover:translate-x-0.5 transition-transform">
             <span>Ver Tabela Diária</span>
             <ArrowRight className="w-4 h-4" />
           </div>
@@ -178,53 +189,58 @@ export const MainMenuScreen: React.FC<MainMenuScreenProps> = ({
         {/* OPÇÃO 4: HISTÓRICO DE OPERAÇÕES */}
         <div
           onClick={() => onNavigate('history')}
-          className="bg-white border border-slate-300 hover:border-blue-600 rounded-lg p-5 cursor-pointer transition-colors flex flex-col justify-between shadow-xs"
+          className="bg-white border border-sky-100 hover:border-[#0284c7] rounded-2xl p-5 cursor-pointer transition-all duration-200 hover:shadow-lg hover:shadow-sky-950/5 flex flex-col justify-between group"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <div className="w-10 h-10 rounded bg-indigo-100 text-indigo-800 flex items-center justify-center font-bold">
-                <FileSpreadsheet className="w-5 h-5" />
+              <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0369a1] to-[#0ea5e9] text-white flex items-center justify-center font-bold shadow-sm shadow-cyan-900/20 group-hover:scale-105 transition-transform">
+                <FileSpreadsheet className="w-5 h-5 text-cyan-100" />
               </div>
-              <span className="text-xs font-bold text-indigo-800 bg-indigo-50 px-2 py-0.5 rounded">
-                {completedOps.length} salvas
+              <span className="text-xs font-bold text-[#0284c7] bg-sky-50 px-2.5 py-1 rounded-full border border-sky-200">
+                {completedOps.length} concluídas
               </span>
             </div>
-            <h2 className="text-base font-bold text-slate-900">
+            <h2 className="text-base font-black text-slate-900 group-hover:text-[#0284c7] transition-colors">
               Consultar Histórico
             </h2>
-            <p className="text-xs text-slate-600 mt-1">
-              Histórico das operações com geração de PDF e Excel individual ou geral.
+            <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+              Histórico com geração de PDF e relatórios Excel individualizados por operação.
             </p>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-indigo-700 text-xs font-bold">
+          <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[#0284c7] text-xs font-bold group-hover:translate-x-0.5 transition-transform">
             <span>Ver Histórico</span>
             <ArrowRight className="w-4 h-4" />
           </div>
         </div>
       </div>
 
-      {/* Rodapé da Equipe do Líder */}
-      <div className="bg-white border border-slate-300 rounded-lg p-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <Truck className="w-4 h-4 text-slate-600" />
-            <span className="text-xs font-bold text-slate-800 uppercase">
-              Motoristas Cadastrados na Equipe:
+      {/* Rodapé da Equipe do Líder com Identidade TBL */}
+      <div className="bg-white border border-sky-100 rounded-2xl p-5 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h3 className="text-xs font-bold uppercase tracking-wider text-[#004b87] flex items-center gap-1.5">
+            <Truck className="w-4 h-4 text-[#0284c7]" />
+            Equipe Operacional Vinculada ao Líder
+          </h3>
+          <p className="text-xs text-slate-500 mt-0.5">
+            {currentLeader.drivers.length} motorista{currentLeader.drivers.length !== 1 ? 's' : ''} e {currentLeader.teamMembers.length} integrantes de apoio registrados
+          </p>
+        </div>
+
+        <div className="flex flex-wrap gap-1.5">
+          {currentLeader.drivers.slice(0, 4).map(drv => (
+            <span key={drv.id} className="px-2.5 py-1 rounded-lg bg-sky-50 border border-sky-200/60 text-xs font-medium text-[#004b87]">
+              {drv.name}
             </span>
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {currentLeader.drivers.map((d) => (
-              <span
-                key={d.id}
-                className="px-2.5 py-1 rounded bg-slate-100 text-slate-800 text-xs border border-slate-200 font-medium"
-              >
-                {d.name}
-              </span>
-            ))}
-          </div>
+          ))}
+          {currentLeader.drivers.length > 4 && (
+            <span className="px-2 py-1 rounded-lg bg-slate-100 text-xs text-slate-600">
+              +{currentLeader.drivers.length - 4} mais
+            </span>
+          )}
         </div>
       </div>
     </div>
   );
 };
+

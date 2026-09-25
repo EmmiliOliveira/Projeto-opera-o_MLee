@@ -139,6 +139,8 @@ export function exportOperationExcel(operation: Operation): void {
     : 0;
 
   const fichaGeral = [
+    { 'Campo': 'Empresa Responsável', 'Valor': 'TBL - Transportes & Logística Fluvial' },
+    { 'Campo': 'Sistema', 'Valor': 'PortoBalsa • Controle de Ciclos Fluviais' },
     { 'Campo': 'Código da Operação', 'Valor': operation.operationCode },
     { 'Campo': 'Data da Manobra', 'Valor': operation.date },
     { 'Campo': 'Turno', 'Valor': operation.shift || 'Dia' },
@@ -173,8 +175,8 @@ export function exportOperationExcel(operation: Operation): void {
   ];
   XLSX.utils.book_append_sheet(wb, wsFicha, '4. RESUMO_OPERACIONAL');
 
-  // Nome do arquivo exclusivo da operação
-  const filename = `Operacao_${operation.operationCode.replace(/[^a-zA-Z0-9]/g, '_')}_${operation.date}.xlsx`;
+  // Nome do arquivo exclusivo da operação com prefixo TBL
+  const filename = `TBL_Operacao_${operation.operationCode.replace(/[^a-zA-Z0-9]/g, '_')}_${operation.date}.xlsx`;
   XLSX.writeFile(wb, filename);
 }
 

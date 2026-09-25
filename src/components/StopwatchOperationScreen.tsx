@@ -10,6 +10,7 @@ import {
 import { formatDuration, saveSingleOperation } from '../utils/storage';
 import { exportOperationPdf } from '../utils/exportPdf';
 import { exportOperationExcel } from '../utils/exportExcel';
+import { TBLLogo } from './TBLLogo';
 import { 
   Play, 
   Pause, 
@@ -337,87 +338,87 @@ export const StopwatchOperationScreen: React.FC<StopwatchOperationScreenProps> =
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6 sm:px-6">
-      {/* Barra Superior Simples */}
+      {/* Barra Superior com Identidade TBL */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
         <div className="flex items-center gap-3">
           <button
             onClick={onBack}
-            className="px-3 py-1.5 rounded bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 text-xs font-semibold flex items-center gap-1 cursor-pointer"
+            className="px-3 py-1.5 rounded-xl bg-white border border-sky-200 text-[#004b87] hover:bg-sky-50 text-xs font-semibold flex items-center gap-1 cursor-pointer shadow-xs transition-colors"
           >
-            <ArrowLeft className="w-4 h-4 text-slate-600" />
+            <ArrowLeft className="w-4 h-4 text-[#0284c7]" />
             <span>Voltar à Fila</span>
           </button>
 
           <div>
-            <div className="flex items-center gap-2">
-              <span className="text-xl font-bold text-slate-900">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="text-xl font-black text-slate-900 tracking-tight">
                 {currentOp.operationCode}
               </span>
-              <span className="px-2 py-0.5 rounded text-xs font-bold bg-slate-200 text-slate-800">
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-sky-100 text-[#004b87] border border-sky-200">
                 {currentOp.type}
               </span>
-              <span className="text-xs text-slate-600">
-                • Balsa: <strong>{currentOp.bargeName}</strong> (Empurrador {currentOp.tugboat || '82'})
+              <span className="text-xs text-slate-500">
+                • Balsa: <strong className="text-slate-800">{currentOp.bargeName}</strong> (Empurrador {currentOp.tugboat || '82'})
               </span>
             </div>
           </div>
         </div>
 
-        {/* Badge de Status */}
+        {/* Badge de Status TBL */}
         <div>
           {currentOp.status === 'EM_ANDAMENTO' && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">
-              <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-300 shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               EM ANDAMENTO
             </span>
           )}
           {currentOp.status === 'PAUSADA' && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">
-              <Pause className="w-3 h-3 fill-current" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-300 shadow-xs">
+              <Pause className="w-3 h-3 fill-current text-amber-600" />
               EM PAUSA
             </span>
           )}
           {currentOp.status === 'AGUARDANDO_INICIO' && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs font-bold bg-slate-100 text-slate-700 border border-slate-300">
-              <Clock className="w-3 h-3" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sky-50 text-[#004b87] border border-sky-300 shadow-xs">
+              <Clock className="w-3 h-3 text-[#0284c7]" />
               AGUARDANDO INÍCIO
             </span>
           )}
           {currentOp.status === 'CONCLUIDA' && (
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded text-xs font-bold bg-emerald-700 text-white">
-              <CheckCircle2 className="w-3.5 h-3.5" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-emerald-700 to-emerald-600 text-white shadow-xs">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-200" />
               CONCLUÍDA
             </span>
           )}
         </div>
       </div>
 
-      {/* Barra de Dados do Controle Diário (Simples e Limpa) */}
-      <div className="bg-white border border-slate-300 rounded-lg p-3.5 mb-5 flex flex-wrap items-center justify-between gap-3 text-xs">
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
+      {/* Barra de Dados do Controle Diário (Identidade TBL) */}
+      <div className="bg-white border border-sky-100 rounded-2xl p-4 mb-5 flex flex-wrap items-center justify-between gap-3 text-xs shadow-xs">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5">
           <div>
-            <span className="text-slate-500">Turno: </span>
-            <strong className="text-slate-800">{currentOp.shift || 'Dia'}</strong>
+            <span className="text-slate-400">Turno: </span>
+            <strong className="text-slate-800 font-semibold">{currentOp.shift || 'Dia'}</strong>
           </div>
           <div>
-            <span className="text-slate-500">Atracação: </span>
-            <strong className="font-mono text-slate-900">{currentOp.dockingTime || '-'}</strong>
+            <span className="text-slate-400">Atracação: </span>
+            <strong className="font-mono text-slate-800">{currentOp.dockingTime || '-'}</strong>
           </div>
           <div>
-            <span className="text-slate-500">Desatracação: </span>
-            <strong className="font-mono text-slate-900">{currentOp.undockingTime || '-'}</strong>
+            <span className="text-slate-400">Desatracação: </span>
+            <strong className="font-mono text-slate-800">{currentOp.undockingTime || '-'}</strong>
           </div>
           <div>
-            <span className="text-slate-500">Frotas Emb./Desemb.: </span>
-            <strong className="text-blue-700 font-mono">{currentOp.embarkedCount ?? completedCount}</strong> / <strong className="text-amber-700 font-mono">{currentOp.disembarkedCount ?? 0}</strong>
+            <span className="text-slate-400">Frotas Emb./Desemb.: </span>
+            <strong className="text-[#0284c7] font-mono">{currentOp.embarkedCount ?? completedCount}</strong> / <strong className="text-amber-700 font-mono">{currentOp.disembarkedCount ?? 0}</strong>
           </div>
           <div>
-            <span className="text-slate-500">Prainha: </span>
-            <strong className="text-slate-900 font-mono">{currentOp.waitingPrainhaCount || 0}</strong>
+            <span className="text-slate-400">Prainha: </span>
+            <strong className="text-slate-800 font-mono">{currentOp.waitingPrainhaCount || 0}</strong>
           </div>
           <div>
-            <span className="text-slate-500">Vistorias: </span>
-            <strong className={currentOp.inspectionsCount ? 'text-red-600 font-mono' : 'text-slate-700 font-mono'}>
+            <span className="text-slate-400">Vistorias: </span>
+            <strong className={currentOp.inspectionsCount ? 'text-red-600 font-mono font-bold' : 'text-slate-700 font-mono'}>
               {currentOp.inspectionsCount || 0}
             </strong>
           </div>
@@ -438,16 +439,16 @@ export const StopwatchOperationScreen: React.FC<StopwatchOperationScreenProps> =
             });
             setIsDailyDataModalOpen(true);
           }}
-          className="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs flex items-center gap-1 border border-slate-300 cursor-pointer"
+          className="px-3 py-1.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-[#004b87] font-semibold text-xs flex items-center gap-1.5 border border-sky-200 cursor-pointer transition-colors"
         >
-          <Edit2 className="w-3 h-3 text-slate-600" />
+          <Edit2 className="w-3.5 h-3.5 text-[#0284c7]" />
           <span>Editar Horários & Dados</span>
         </button>
       </div>
 
       {/* Alerta de Cargas Críticas */}
       {currentOp.hasCriticalCargos && (
-        <div className="mb-5 p-3 rounded-md bg-amber-50 border border-amber-300 text-xs text-amber-900 flex items-center justify-between">
+        <div className="mb-5 p-3.5 rounded-xl bg-amber-50 border border-amber-300 text-xs text-amber-900 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0" />
             <span><strong>Regra de Borda:</strong> {currentOp.criticalCargoRules || 'Cargas críticas não podem viajar na borda da balsa.'}</span>
@@ -455,44 +456,53 @@ export const StopwatchOperationScreen: React.FC<StopwatchOperationScreenProps> =
         </div>
       )}
 
-      {/* 1. CRONÔMETRO PRINCIPAL DA OPERAÇÃO (Layout Sóbrio e Padrão) */}
-      <div className="bg-slate-900 text-white rounded-lg p-5 mb-6 border border-slate-800">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+      {/* 1. CRONÔMETRO PRINCIPAL DA OPERAÇÃO (Design TBL Fluvial) */}
+      <div className="bg-gradient-to-r from-[#001c38] via-[#002f5e] to-[#001f3f] text-white rounded-2xl p-6 mb-6 border border-sky-400/25 shadow-xl shadow-sky-950/20 relative overflow-hidden">
+        {/* Subtle Water Ripple background glow */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center relative z-10">
           {/* Display Digital */}
           <div className="md:col-span-5 text-center md:text-left">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">
+            <span className="text-[11px] font-bold uppercase tracking-widest text-sky-300/80 block mb-1">
               Tempo Total da Operação
             </span>
-            <div className="font-mono text-4xl sm:text-5xl font-bold tracking-normal text-white">
+            <div className="font-mono text-4xl sm:text-5xl font-black tracking-normal text-white drop-shadow-sm">
               {formatDuration(currentOp.totalDurationSeconds)}
             </div>
-            <div className="mt-2 flex items-center justify-center md:justify-start gap-4 text-xs text-slate-300">
-              <span>Líquido: <strong className="text-emerald-400 font-mono">{formatDuration(currentOp.activeOperatingSeconds)}</strong></span>
-              <span>•</span>
-              <span>Pausas: <strong className="text-amber-400 font-mono">{formatDuration(currentOp.pausedSeconds)}</strong> ({currentOp.pauses.length})</span>
+            <div className="mt-2.5 flex items-center justify-center md:justify-start gap-3 text-xs text-sky-100/90">
+              <span className="flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                Líquido: <strong className="text-emerald-300 font-mono">{formatDuration(currentOp.activeOperatingSeconds)}</strong>
+              </span>
+              <span className="text-sky-400">·</span>
+              <span className="flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                Pausas: <strong className="text-amber-300 font-mono">{formatDuration(currentOp.pausedSeconds)}</strong> ({currentOp.pauses.length})
+              </span>
             </div>
           </div>
 
           {/* Cargas e Médias */}
-          <div className="md:col-span-3 bg-slate-800 p-3.5 rounded border border-slate-700 text-xs">
-            <div className="flex justify-between mb-1">
-              <span className="text-slate-400">Frotas Feitas:</span>
-              <strong className="text-white">{completedCount} / {currentOp.plannedCargosCount}</strong>
+          <div className="md:col-span-3 bg-black/30 backdrop-blur-sm p-4 rounded-xl border border-sky-400/20 text-xs">
+            <div className="flex justify-between mb-1.5">
+              <span className="text-sky-200">Frotas Movimentadas:</span>
+              <strong className="text-white font-mono">{completedCount} / {currentOp.plannedCargosCount}</strong>
             </div>
-            <div className="w-full bg-slate-700 h-2 rounded overflow-hidden mb-2">
+            <div className="w-full bg-slate-800/80 h-2.5 rounded-full overflow-hidden mb-2 p-0.5 border border-sky-500/20">
               <div 
-                className="bg-blue-500 h-full"
+                className="bg-gradient-to-r from-sky-400 to-emerald-400 h-full rounded-full transition-all duration-300"
                 style={{ width: `${progressPercent}%` }}
               ></div>
             </div>
-            <div className="flex justify-between text-slate-400 text-[11px]">
-              <span>Progresso: {progressPercent}%</span>
-              <span>Média: {avgCycleSeconds > 0 ? formatDuration(avgCycleSeconds) : '--'}/un</span>
+            <div className="flex justify-between text-sky-200/80 text-[11px]">
+              <span>Progresso: <strong>{progressPercent}%</strong></span>
+              <span>Média: <strong className="font-mono">{avgCycleSeconds > 0 ? formatDuration(avgCycleSeconds) : '--'}</strong>/un</span>
             </div>
           </div>
 
           {/* Botões de Ação Global */}
-          <div className="md:col-span-4 flex flex-col gap-2">
+          <div className="md:col-span-4 flex flex-col gap-2.5">
             {currentOp.status === 'AGUARDANDO_INICIO' && (
               <button
                 onClick={handleStartGlobalOperation}
