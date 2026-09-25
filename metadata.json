@@ -1,0 +1,6 @@
+{
+  "name": "PortoBalsa - Análise de Desempenho de Embarcação",
+  "description": "App web para acompanhamento em tempo real de tempo de ciclo, cronometragem simultânea por motorista, registro de pausas e exportação para PDF e Excel em operações de embarque e desembarque.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
